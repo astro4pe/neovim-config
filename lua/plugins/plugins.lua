@@ -44,7 +44,8 @@ return {
 				on_config_done = nil,
 				-- size can be a number or function which is passed the current terminal
 				size = 20,
-				open_mapping = [[<c-\>]],
+				-- open_mapping = [[<c-/>]],
+				open_mapping = [[<leader>t]],
 				hide_numbers = true, -- hide the number column in toggleterm buffers
 				shade_filetypes = {},
 				shade_terminals = true,
@@ -207,5 +208,44 @@ return {
 				},
 			})
 		end,
+	},
+	-- "hari-rangarajan/CCTree", -- doesn't seem to work, cant even load the cscope.out file, errors on loading.
+	{
+		"ldelossa/litee-calltree.nvim",
+		dependencies = {
+			"ldelossa/litee.nvim",
+		},
+		opts = {},
+		config = function()
+			require("litee.lib").setup({
+				tree = {
+					icon_set = "codicons",
+				},
+				panel = {
+					orientation = "right",
+					panel_size = 30,
+				},
+			})
+			require("litee.calltree").setup({})
+			-- vim.keymap.set("n", "<leader>co", vim.lsp.buf.outgoing_calls, { desc = "vim.lsp.buf.outgoing_calls" })
+			vim.keymap.set("n", "<leader>co", vim.lsp.buf.incoming_calls, { desc = "Open Call Tree" })
+		end,
+	},
+	{
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
 	},
 }
