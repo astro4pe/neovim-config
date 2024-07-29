@@ -16,17 +16,15 @@ return {
 			require("which-key").setup()
 
 			-- Document existing key chains
-			require("which-key").register({
-				["<leader>b"] = { name = "Buffer", _ = "which_key_ignore" },
-				["<leader>c"] = { name = "Cscope", _ = "which_key_ignore" },
-				-- ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-				-- ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-				["<leader>s"] = { name = "Search", _ = "which_key_ignore" },
-				["<leader>lw"] = { name = "Workspace", _ = "which_key_ignore" },
-				["<leader>x"] = { name = "Trouble", _ = "which_key_ignore" },
-				["<leader>l"] = { name = "Lsp", _ = "which_key_ignore" },
-				["<leader>q"] = { name = "Session", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "Terminal", _ = "which_key_ignore" },
+			require("which-key").add({
+				{ "<leader>b", group = "Buffer" },
+				{ "<leader>c", group = "Cscope" },
+				{ "<leader>s", group = "Search" },
+				{ "<leader>lw", group = "Workspace" },
+				{ "<leader>x", group = "Trouble" },
+				{ "<leader>l", group = "Lsp" },
+				{ "<leader>q", group = "Session" },
+				{ "<leader>t", group = "Terminal" },
 			})
 		end,
 	},
