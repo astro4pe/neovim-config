@@ -26,6 +26,7 @@ return {
 				["<leader>x"] = { name = "Trouble", _ = "which_key_ignore" },
 				["<leader>l"] = { name = "Lsp", _ = "which_key_ignore" },
 				["<leader>q"] = { name = "Session", _ = "which_key_ignore" },
+				["<leader>t"] = { name = "Terminal", _ = "which_key_ignore" },
 			})
 		end,
 	},
@@ -45,7 +46,6 @@ return {
 				-- size can be a number or function which is passed the current terminal
 				size = 20,
 				-- open_mapping = [[<c-/>]],
-				open_mapping = [[<leader>t]],
 				hide_numbers = true, -- hide the number column in toggleterm buffers
 				shade_filetypes = {},
 				shade_terminals = true,
@@ -84,6 +84,14 @@ return {
 				-- 	{ nil, "<M-3>", "Float Terminal", "float", nil },
 				-- },
 			})
+			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "ToggleTerm" })
+			vim.keymap.set(
+				"n",
+				"<leader>th",
+				"<cmd>ToggleTerm direction=horizontal<CR>",
+				{ desc = "ToggleTerm Horizontal" }
+			)
+			vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "ToggleTerm Float" })
 		end,
 	},
 	{
