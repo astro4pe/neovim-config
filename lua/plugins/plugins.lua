@@ -25,6 +25,7 @@ return {
 				{ "<leader>l", group = "Lsp" },
 				{ "<leader>q", group = "Session" },
 				{ "<leader>t", group = "Terminal" },
+				{ "<leader>m", group = "Bookmarks" },
 			})
 		end,
 	},
@@ -253,5 +254,39 @@ return {
 			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
+	},
+	{
+		"echasnovski/mini.nvim",
+		config = function()
+			require("mini.icons").setup()
+		end,
+	},
+	{
+		"LintaoAmons/bookmarks.nvim", -- "tristone13th/lspmark.nvim" -- more powerful but complex
+		dependencies = {
+			{ "nvim-telescope/telescope.nvim" },
+			{ "stevearc/dressing.nvim" }, -- optional: to have the same UI shown in the GIF
+		},
+		config = function()
+			local function call_bookmark_command()
+				local commands = require("bookmarks.adapter.commands").commands
+				local command
+				for _, c in ipairs(commands) do
+					if c.name == "[Mark] Bookmarks of current project" then -- change it to one of the command above
+						command = c
+					end
+				end
+
+				if command then
+					command.callback()
+				end
+			end
+
+			vim.keymap.set({ "n", "v" }, "<leader>mm", "<cmd>BookmarksMark<cr>", { desc = "Add mark at current line" })
+			vim.keymap.set({ "n", "v" }, "<leader>ml", call_bookmark_command, { desc = "List project marks" })
+			vim.keymap.set({ "n", "v" }, "<leader>mo", "<cmd>BookmarksGoto<cr>", { desc = "List all marks" })
+			vim.keymap.set({ "n", "v" }, "<leader>mc", "<cmd>BookmarksCommands<cr>", { desc = "Commands" })
+			vim.keymap.set({ "n", "v" }, "<leader>mg", "<cmd>BookmarksGotoRecent<cr>", { desc = "Goto recent" })
+		end,
 	},
 }
