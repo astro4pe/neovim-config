@@ -289,4 +289,5 @@ return {
 			vim.keymap.set({ "n", "v" }, "<leader>mg", "<cmd>BookmarksGotoRecent<cr>", { desc = "Goto recent" })
 		end,
 	},
+	{ "sindrets/diffview.nvim" },
 }
