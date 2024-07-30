@@ -14,4 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("vim-options")
 require("remaps")
 require("autocmds")
-require("lazy").setup("plugins")
+require("lazy").setup({
+	spec = { { import = "plugins" } },
+	rocks = { enabled = false },
+})
