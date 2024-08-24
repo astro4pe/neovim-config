@@ -137,7 +137,18 @@ return { -- LSP Configuration & Plugins
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
-			clangd = {},
+			clangd = {
+				cmd = {
+					"clangd",
+					"-j=8",
+					"--background-index",
+					"--limit-references=5000",
+					"--limit-results=5000",
+					-- No solution yet for specifying custom clang-format file (https://github.com/clangd/clangd/issues/805)
+					-- "--fallback-style=file:$HOME/.config/nvim/linux-clang-format",
+					-- "--fallback-style=WebKit",
+				},
+			},
 			-- gopls = {},
 			pyright = {},
 			-- rust_analyzer = {},
