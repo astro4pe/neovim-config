@@ -53,7 +53,8 @@ return {
 			end, {
 				desc = "Toggle Format-On-Save",
 			})
-			vim.keymap.set("n", "<leader>lff", "<cmd>FormatToggle<cr>")
+			vim.keymap.set("n", "<leader>lf", "<cmd>FormatToggle<cr>")
+			vim.g.disable_autoformat = true -- Disable autoformat by default
 		end,
 	},
 
